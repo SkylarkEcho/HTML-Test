@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- https://blog.csdn.net/qq_27922023/article/details/79042697 -->
+</body>
+<script>
+    var arr = [1, 4, 3, 3, 5, 8, 4, 9, 8];
+    //遍历数组
+    // arr.forEach(function(item,index){
+    //     document.write(item+"===>"+index);
+    // })
+    //遍历过滤出一个新的子数组，返回条件为true的值。
+    // var arr2 = arr.filter(function(item,index){
+    //     return item >8;
+    // })
+    // document.write(arr+"<br>"+arr2)
+    //数组去重
+    // function show(array){
+    //     var newarr=[];
+    //     for(var i=0;i<array.length;i++){
+    //         if(newarr.indexOf(array[i])==-1){
+    //             newarr.push(array[i])
+    //         }
+    //     }
+    //     return newarr;
+    // }
+    // document.write(show(arr));
+    //函数的扩展-call,apply,bind
+        var obj = { username: 'zhangsan' };
+        function test(data) {
+            console.log(this+data)
+        }
+        test.apply(obj,[33]);
+        test.call(obj,44);
+
+</script>
+
+</html>

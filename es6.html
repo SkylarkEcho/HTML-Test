@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- https://www.cnblogs.com/JetpropelledSnake/p/9296576.html -->
+</body>
+<script>
+    //let命名
+    /*
+    1.let沒有变量提升
+    2.let不允许在相同作用域内重复声明。
+    */
+    // {
+    //     var one=1;
+    //     let two=2;
+    // }
+    // console.log(one,two);
+    //ES5中只有全局作用域和函数作用域，并没有块级作用域。
+    //下文现象因为函数内部，变量提升导致内存name变量覆盖了外层name。类似的情况还出现在 for循环的计数变量 i 最后会泄露为全局变量。 
+    //const声明变量必须立即初始化，并且其值不能再改变，其他与let类似（块级作用域）
+    // var name = 'Q1mi'
+    // function foo() {
+    //     console.log(name)
+    //     if (false) {
+    //         var name = 'Bob'
+    //     }
+    // }
+    // foo()//undefined
+    // function foo2() {
+    //     console.log(name)
+    //     if (false) {
+    //         let name = 'Bob'
+    //     }
+    // }
+    // foo2()//Q1mi
+    // for (var i = 0; i < 5; i++) {
+    //     console.log('哈哈');
+    // }
+    // console.log(i); // 5
+
+    //变量的解构赋值
+    // var {x,y}={x:10,y:20}
+    // console.log(x);  //10
+    // console.log(y);  //20
+
+
+    // 在此之前，JavaScript中只有indexOf方法可用来确定一个字符串是否包含在另一个字符串中。
+    // ES6中又提供了3种新方法：
+    // includes()：返回布尔值，表示是否找到了参数字符串。
+    // stratsWith()：返回布尔值，表示参数字符串是否在源字符串的开始位置。
+    // endsWith()：返回布尔值，表示参数字符串是否在源字符串的结尾位置。
+    // 三个方法都支持第2个参数，表示开始匹配的位置
+    // var s = "Hello world!";
+    // console.log(s.includes("s")) // false
+    // console.log(s.startsWith("Hello w"))  // true
+    // console.log(s.endsWith("d",11))  // true
+
+
+    //模板字符串
+    //增强版的字符串，反引号（`）标识。可以当做普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。在模板字符串中嵌入变量，需要将变量名写入${}中。
+    // {
+    //     let name="MX"
+    //     console.log(`我是 ${name}`);
+    // }
+
+
+    //箭头函数
+    /*
+    如果参数只有一个，可以省略小括号
+    如果不写return，可以不写大括号
+    没有arguments变量
+    不改变this指向(this指向该函数)
+    */
+    var show = name => console.log(name+"Hello World!!!")
+    show("12");
+    var show2 = (name,age) => {
+        return console.log("我是"+name+",我"+age+"岁")
+    }
+    show2("铭瑄",20);
+    var show3=()=>console.log("Sss");
+    show3();
+
+
+    //Object.assign() 
+    //Object.assign方法用来将源对象的所有可枚举属性复制到目标对象。它至少需要两个对象作为参数，第一个参数是目标对象，第二个参数是源对象。参数必须都是对象，否则抛出TypeError
+    //Object.assjgn只复制自身属性，不可枚举属性（enumerable为false）和继承的属性不会被复制。
+    // var x = { name: "Q1mi", age: 18 };
+    // var y = x;
+    // var z = Object.assign({}, x);
+    // x.age = 20;
+    // x.age  // 20
+    // y.age  // 20
+    // z.age  // 18
+
+
+    //面向对象
+    //ES5的构造对象的方式 使用构造函数来创造。构造函数唯一的不同是函数名首字母要大写。
+    // function Fn1(name, age) {
+    //     this.name = name
+    //     this.age = age
+    // }
+    // // 给父级绑定方法
+    // Fn1.prototype.toString = function () {
+    //     return '(' + this.name + ',' + this.age + ')'
+    // }
+    // var child = new Fn1("MX", "20");
+    // console.log(child.name);
+    // console.log(child.toString());
+
+    // // 继承
+    // function Fn2(name, age, color) {
+    //     Fn1.call(this, name, age)
+    //     this.color = color;
+    // }
+    // // 继承父类的方法
+    // Fn2.prototype = Object.create(Fn1.prototype);
+    // // 修复 constructor(指定构造函数)
+    // Fn2.prototype.constructor = Fn1;
+    // // 扩展方法
+    // Fn2.prototype.showColor = function () {
+    //     console.log('色彩是' + this.color);
+    // }
+    // var newchild=new Fn2("XM","21","Pink");
+    // console.log(newchild.toString());
+    // newchild.showColor();
+
+
+    //Class构造对象
+    // class Fn1 {
+    //     constructor(name, age) {
+    //         this.name = name
+    //         this.age = age
+    //     }
+    //     toString() {
+    //         return `我是${this.name},我${this.age}岁`
+    //     }
+    // }
+    // var mx = new Fn1("铭瑄", 20);
+    // console.log(mx.toString());
+    // class Fn2 extends Fn1 {
+    //     constructor(name, age, color) {
+    //         super(name, age);
+    //         this.color = color
+    //     }
+    //     showColor() {
+    //         return `我是${this.name},我${this.age}岁,我喜欢${this.color}`
+    //     }
+    // }
+    // var xm = new Fn2("小胖", 20, "粉色")
+    // console.log(xm.showColor());
+</script>
+
+</html>
